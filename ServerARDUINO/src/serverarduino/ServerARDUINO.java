@@ -5,6 +5,8 @@
  */
 package serverarduino;
 
+import ricezioneDaArduino.DaArduone;
+
 /**
  *
  * @author saccani_federico
@@ -20,7 +22,10 @@ public class ServerARDUINO {
         String ipArduino="localhost";
         thSocket thRicevi = new thSocket(portaAscolto,portaArduino,ipArduino);
         
-        thRicevi.run();
+        DaArduone i = new DaArduone();
+        i.setPort(3);
+        i.accendiLed();
+        //thRicevi.run();
     }
     
 }
