@@ -15,7 +15,10 @@ public class PeerArduino {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        socketUDP s= new socketUDP(3333);
+        DaArduone.setPort(3);
+        s.send(DaArduone.getFromArduone(), 5555, "localhost");
+        
     }
     
 }

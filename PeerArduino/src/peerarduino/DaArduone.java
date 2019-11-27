@@ -10,14 +10,15 @@ public class DaArduone {
     private static int port=0;
     private static SerialPort serialPort;
 
-    public static String getFromArduone() throws InterruptedException {
+    public static String getFromArduone(){
 
         try {       
             open(port);
             return serialPort.readString();
-        } catch (NullPointerException e) {
+        }catch (NullPointerException e) {
             return "Devi prima fare setCom";
         } catch (SerialPortException ex) {
+            System.exit(0);
             return ex.getMessage();
         }
     }
@@ -30,6 +31,7 @@ public class DaArduone {
             serialPort.closePort();
             
         } catch (SerialPortException ex) {
+            System.exit(0);
             Logger.getLogger(DaArduone.class.getName()).log(Level.SEVERE, null, ex);
         }
         
