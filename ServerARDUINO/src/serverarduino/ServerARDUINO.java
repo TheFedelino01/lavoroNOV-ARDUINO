@@ -4,9 +4,6 @@
  * and open the template in the editor.
  */
 package serverarduino;
-
-import ricezioneDaArduino.DaArduone;
-
 /**
  *
  * @author saccani_federico
@@ -21,10 +18,6 @@ public class ServerARDUINO {
         int portaArduino=5555;
         String ipArduino="localhost";
         thSocket thRicevi = new thSocket(portaAscolto,portaArduino,ipArduino);
-        
-        DaArduone i = new DaArduone();
-        i.setPort(3);
-        i.accendiLed();
         //thRicevi.run();
     }
     
