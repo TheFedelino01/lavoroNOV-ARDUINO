@@ -7,10 +7,10 @@ import jssc.SerialPortException;
 
 public class DaArduone {
 
-    private int port=0;
-    private SerialPort serialPort;
+    private static int port=0;
+    private static SerialPort serialPort;
 
-    public String getFromArduone() throws InterruptedException {
+    public static String getFromArduone() throws InterruptedException {
 
         try {       
             open(port);
@@ -22,7 +22,7 @@ public class DaArduone {
         }
     }
     
-    public void accendiLed(){
+    public static void accendiLed(){
 
         try {
             open(port);
@@ -35,7 +35,7 @@ public class DaArduone {
         
     }
 
-    public void open(int com) {
+    public static void open(int com) {
         try {
             if(!serialPort.isOpened())
                 serialPort.openPort();      
@@ -46,7 +46,7 @@ public class DaArduone {
         
 
     }
-    public void setPort(int com){
+    public static void setPort(int com){
         serialPort = new SerialPort("COM" + com);
         port=com;
     }
