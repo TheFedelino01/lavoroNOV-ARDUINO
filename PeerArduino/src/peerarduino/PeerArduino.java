@@ -5,6 +5,9 @@
  */
 package peerarduino;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author broch_mattia
@@ -15,9 +18,22 @@ public class PeerArduino {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        boolean attivo=true;
         socketUDP s= new socketUDP(3333);
         DaArduone.setPort(3);
-        s.send(DaArduone.getFromArduone(), 5555, "localhost");
+        
+        while(attivo){
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(PeerArduino.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            s.send(DaArduone.getFromArduone(), 5555, "localhost");//manda al server 
+            if(s.receive().getComando()=="ACCENDI"){
+                DaArduone.accendiLed();
+                //manda ack
+            }
+        }
         
     }
     
