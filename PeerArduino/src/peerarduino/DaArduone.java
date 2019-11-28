@@ -17,7 +17,8 @@ public class DaArduone {
 
         try {       
             open(port);
-            return serialPort.readString();
+            byte size = serialPort.readBytes(1)[0];
+            return serialPort.readString(size);
         }catch (NullPointerException e) {
             return "Devi prima fare setCom";
         } catch (SerialPortException ex) {
@@ -45,14 +46,9 @@ public class DaArduone {
             if(!serialPort.isOpened())
                 serialPort.openPort();      
             serialPort.setParams(9600, 8, 1, 0);
-            serialPort.addEventListener(DaArduone::serialEvent);
         } catch (Exception e) {         
             System.out.println(e.getMessage());
         }
-    }
-    
-    public static void serialEvent(SerialPortEvent arg0) {
-        
     }
     
     public static void setPort(int com){

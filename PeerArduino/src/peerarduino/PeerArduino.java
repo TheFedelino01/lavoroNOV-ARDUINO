@@ -32,6 +32,8 @@ public class PeerArduino {
                 Logger.getLogger(PeerArduino.class.getName()).log(Level.SEVERE, null, ex);
             }
             s.send(DaArduone.getFromArduone(), 5555, "localhost");//manda al server 
+            
+            
             if(s.receive().getComando().equals("ACCENDI")){
                 DaArduone.accendiLed();
                 //manda ack
