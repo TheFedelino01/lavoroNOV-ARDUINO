@@ -5,6 +5,7 @@
  */
 package peerarduino;
 
+import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,16 +28,19 @@ public class PeerArduino {
         DaArduone.setPort(com);
         DaArduone.open(com);
         
+        s.setTimeOut(2000);
+        
         while(attivo){
             try {
                 Thread.sleep(10);
             } catch (InterruptedException ex) {
                 Logger.getLogger(PeerArduino.class.getName()).log(Level.SEVERE, null, ex);
             }
-          //  s.send(DaArduone.getFromArduone(), 3333, "172.16.102.63");//manda al server 
+            Random ran = new Random();
+            s.send("DATO;POT1;"+ran.nextInt(5000), 3333, "172.16.102.63");//manda al server 
             
             cmdRicevuto cmd =s.receive(); 
-            if(cmd.getComando().equals("ACCENDI;LED")){   
+            if(cmd !=null && cmd.getComando().equals("ACCENDI;LED")){   
                 System.out.println("Accendo");           
                 DaArduone.accendiLed();
                 s.inviaACK(3333, cmd.getIP());
