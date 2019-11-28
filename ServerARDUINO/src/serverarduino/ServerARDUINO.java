@@ -16,9 +16,9 @@ public class ServerARDUINO {
     public static void main(String[] args) {
         int portaAscolto=3333;
         int portaArduino=5555;
-        String ipArduino="localhost";
+        String ipArduino="172.16.102.62";
         thSocket thRicevi = new thSocket(portaAscolto,portaArduino,ipArduino);
-        //thRicevi.run();
+        thRicevi.run();
     }
     
 }

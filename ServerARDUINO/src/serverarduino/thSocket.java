@@ -58,7 +58,7 @@ public class thSocket extends Thread {
                     
                     salvataggio.addRilevazione(nomePeriferica, dato);
                     
-                    System.out.println("Ricevuta rilevazione: "+nomePeriferica+" dato: "+dato);
+                    //System.out.println("Ricevuta rilevazione: "+nomePeriferica+" dato: "+dato);
                     
                 } else if (cmd.equals("DIMMELO")) {
                     String nomePeriferica = splitted[1];

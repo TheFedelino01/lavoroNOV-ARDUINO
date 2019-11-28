@@ -17,7 +17,7 @@ public class salvataggio {
     
     public salvataggio(){
         periferiche = new periferiche();
-        periferiche.addRilevazione("POT1","automatico");
+        //periferiche.addRilevazione("POT1","automatico");
     }
     
     public void addRilevazione(String periferica, String dato){
