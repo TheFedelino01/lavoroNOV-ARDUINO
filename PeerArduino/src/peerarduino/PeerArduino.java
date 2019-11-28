@@ -32,6 +32,7 @@ public class PeerArduino {
             if(s.receive().getComando()=="ACCENDI"){
                 DaArduone.accendiLed();
                 //manda ack
+                s.inviaACK(5555, "localhost");
             }
         }
         
