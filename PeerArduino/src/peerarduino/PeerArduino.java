@@ -5,6 +5,7 @@
  */
 package peerarduino;
 
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,7 +21,9 @@ public class PeerArduino {
     public static void main(String[] args) {
         boolean attivo=true;
         socketUDP s= new socketUDP(3333);
-        DaArduone.setPort(3);
+        Scanner sc = new Scanner(System.in); 
+        System.out.print("Inserisci porta com: COM");
+        DaArduone.setPort(sc.nextInt());
         
         while(attivo){
             try {
@@ -29,7 +32,7 @@ public class PeerArduino {
                 Logger.getLogger(PeerArduino.class.getName()).log(Level.SEVERE, null, ex);
             }
             s.send(DaArduone.getFromArduone(), 5555, "localhost");//manda al server 
-            if(s.receive().getComando()=="ACCENDI"){
+            if(s.receive().getComando().equals("ACCENDI")){
                 DaArduone.accendiLed();
                 //manda ack
                 s.inviaACK(5555, "localhost");
