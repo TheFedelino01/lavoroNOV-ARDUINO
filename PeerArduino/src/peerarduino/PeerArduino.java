@@ -20,10 +20,12 @@ public class PeerArduino {
      */
     public static void main(String[] args) {
         boolean attivo=true;
-        socketUDP s= new socketUDP(3333);
+        socketUDP s= new socketUDP(5555);
         Scanner sc = new Scanner(System.in); 
         System.out.print("Inserisci porta com: COM");
-        DaArduone.setPort(sc.nextInt());
+        int com = sc.nextInt();
+        DaArduone.setPort(com);
+        DaArduone.open(com);
         
         while(attivo){
             try {
@@ -31,13 +33,13 @@ public class PeerArduino {
             } catch (InterruptedException ex) {
                 Logger.getLogger(PeerArduino.class.getName()).log(Level.SEVERE, null, ex);
             }
-            s.send(DaArduone.getFromArduone(), 5555, "localhost");//manda al server 
+          //  s.send(DaArduone.getFromArduone(), 3333, "172.16.102.63");//manda al server 
             
-            
-            if(s.receive().getComando().equals("ACCENDI")){
+            cmdRicevuto cmd =s.receive(); 
+            if(cmd.getComando().equals("ACCENDI;LED")){   
+                System.out.println("Accendo");           
                 DaArduone.accendiLed();
-                //manda ack
-                s.inviaACK(5555, "localhost");
+                s.inviaACK(3333, cmd.getIP());
             }
         }
         

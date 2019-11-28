@@ -31,8 +31,7 @@ public class DaArduone {
 
         try {
             open(port);
-            serialPort.writeString("Accendi");
-            serialPort.closePort();
+            serialPort.writeString("ACCENDI");
             
         } catch (SerialPortException ex) {
             System.exit(0);
