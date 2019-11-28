@@ -3,12 +3,15 @@ package peerarduino;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jssc.SerialPort;
+import jssc.SerialPortEvent;
+import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
 
 public class DaArduone {
 
     private static int port=0;
     private static SerialPort serialPort;
+    
 
     public static String getFromArduone(){
 
@@ -42,12 +45,16 @@ public class DaArduone {
             if(!serialPort.isOpened())
                 serialPort.openPort();      
             serialPort.setParams(9600, 8, 1, 0);
+            serialPort.addEventListener(DaArduone::serialEvent);
         } catch (Exception e) {         
             System.out.println(e.getMessage());
         }
-        
-
     }
+    
+    public static void serialEvent(SerialPortEvent arg0) {
+        
+    }
+    
     public static void setPort(int com){
         serialPort = new SerialPort("COM" + com);
         port=com;
